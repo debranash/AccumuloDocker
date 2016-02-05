@@ -57,5 +57,5 @@ RUN printf '\
 </configuration>\n\
 ' >> hadoop-2.7.2/etc/hadoop/mapred-site.xml
 
-RUN hadoop-2.7.2/bin/hdfs namenode -format
+ADD hadoop_format_hdfs.sh /etc/my_init.d/hadoop_format_hdfs.sh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
