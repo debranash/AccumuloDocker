@@ -57,5 +57,12 @@ RUN printf '\
 </configuration>\n\
 ' >> hadoop-2.7.2/etc/hadoop/mapred-site.xml
 
-ADD hadoop_format_hdfs.sh /etc/my_init.d/hadoop_format_hdfs.sh
+RUN sed -i 's/export JAVA_HOME=${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-7-openjdk-amd64/' hadoop-2.7.2/etc/hadoop/hadoop-env.sh
+
+ADD sshd_start.sh /etc/my_init.d/01_sshd_start.sh
+ADD hadoop_format_hdfs.sh /etc/my_init.d/02_hadoop_format_hdfs.sh
+ADD hadoop_start.sh /etc/my_init.d/03_hadoop_start.sh
+
+EXPOSE 50070
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
