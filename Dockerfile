@@ -62,9 +62,13 @@ RUN printf '\
 RUN sed -i 's/export JAVA_HOME=${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-7-openjdk-amd64/' hadoop-2.6.3/etc/hadoop/hadoop-env.sh
 
 WORKDIR /root/installs/hadoop-2.6.3
+
+RUN cp ~/installs/zookeeper-3.4.6/conf/zoo_sample.cfg ~/installs/zookeeper-3.4.6/conf/zoo.cfg
+
 ADD sshd_start.sh /etc/my_init.d/01_sshd_start.sh
 ADD hadoop_format_hdfs.sh /etc/my_init.d/02_hadoop_format_hdfs.sh
 ADD hadoop_start.sh /etc/my_init.d/03_hadoop_start.sh
+ADD zookeeper_start.sh /etc/my_init.d/04_zookeeper_start.sh
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
