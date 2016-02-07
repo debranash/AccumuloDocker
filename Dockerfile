@@ -91,6 +91,6 @@ ADD zookeeper_start.sh /etc/my_init.d/04_zookeeper_start.sh
 ADD accumulo_init.sh /etc/my_init.d/05_accumulo_init.sh
 ADD accumulo_start.sh /etc/my_init.d/06_accumulo_start.sh
 
-
+EXPOSE 9997 9000 50095
 RUN rm -f /root/downloads/*
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
