@@ -29,7 +29,7 @@ RUN echo "Host *" >> /etc/ssh/ssh_config && echo "   StrictHostKeyChecking no" >
 RUN mkdir -p /root/downloads
 WORKDIR /root/downloads
 RUN wget http://it.apache.contactlab.it/hadoop/common/hadoop-2.6.3/hadoop-2.6.3.tar.gz
-RUN wget http://apache.panu.it/zookeeper/stable/zookeeper-3.4.6.tar.gz
+RUN wget http://apache.panu.it/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
 RUN wget http://it.apache.contactlab.it/accumulo/1.6.4/accumulo-1.6.4-bin.tar.gz
 RUN mkdir -p /root/installs
 WORKDIR /root/installs
@@ -72,7 +72,7 @@ WORKDIR /root/installs/hadoop-2.6.3
 
 RUN cp ~/installs/zookeeper-3.4.6/conf/zoo_sample.cfg ~/installs/zookeeper-3.4.6/conf/zoo.cfg
 
-RUN cp ~/installs/accumulo-1.6.4/conf/examples/512MB/standalone/* ~/installs/accumulo-1.6.4/conf/
+RUN cp ~/installs/accumulo-1.6.4/conf/examples/512MB/native-standalone/* ~/installs/accumulo-1.6.4/conf/
 RUN sed -i 's/# export ACCUMULO_MONITOR_BIND_ALL="true"/export ACCUMULO_MONITOR_BIND_ALL="true"/' ~/installs/accumulo-1.6.4/conf/accumulo-env.sh
 RUN sed -i 's/<value>DEFAULT<\/value>/<value>password<\/value>/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
 RUN sed -i 's/<value>secret<\/value>/<value>password<\/value>/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
