@@ -30,7 +30,7 @@ RUN mkdir -p /root/downloads
 WORKDIR /root/downloads
 RUN wget http://it.apache.contactlab.it/hadoop/common/hadoop-2.6.3/hadoop-2.6.3.tar.gz
 RUN wget http://apache.panu.it/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
-RUN wget http://it.apache.contactlab.it/accumulo/1.6.4/accumulo-1.6.4-bin.tar.gz
+RUN wget http://it.apache.contactlab.it/accumulo/1.6.5/accumulo-1.6.5-bin.tar.gz
 RUN mkdir -p /root/installs
 WORKDIR /root/installs
 RUN tar zxvf /root/downloads/hadoop-2.6.3.tar.gz
