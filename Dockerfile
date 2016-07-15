@@ -74,6 +74,13 @@ RUN cp ~/installs/zookeeper-3.4.6/conf/zoo_sample.cfg ~/installs/zookeeper-3.4.6
 
 RUN cp ~/installs/accumulo-1.6.4/conf/examples/512MB/native-standalone/* ~/installs/accumulo-1.6.4/conf/
 RUN sed -i 's/# export ACCUMULO_MONITOR_BIND_ALL="true"/export ACCUMULO_MONITOR_BIND_ALL="true"/' ~/installs/accumulo-1.6.4/conf/accumulo-env.sh
+
+RUN sed -i 's/ACCUMULO_TSERVER_OPTS="${POLICY} -Xmx48m -Xms48m "/ACCUMULO_TSERVER_OPTS="${POLICY} -Xmx1536m -Xms1536m "/' ~/installs/accumulo-1.6.4/conf/accumulo-env.sh
+RUN sed -i 's/ACCUMULO_MASTER_OPTS="${POLICY} -Xmx128m -Xms128m"/ACCUMULO_MASTER_OPTS="${POLICY} -Xmx1024m -Xms1024m"/' ~/installs/accumulo-1.6.4/conf/accumulo-env.sh
+RUN sed -i 's/ACCUMULO_MONITOR_OPTS="${POLICY} -Xmx64m -Xms64m"/ACCUMULO_MONITOR_OPTS="${POLICY} -Xmx1024m -Xms1024m"/' ~/installs/accumulo-1.6.4/conf/accumulo-env.sh
+RUN sed -i 's/ACCUMULO_GC_OPTS="-Xmx64m -Xms64m"/ACCUMULO_GC_OPTS="-Xmx256m -Xms256m"/' ~/installs/accumulo-1.6.4/conf/accumulo-env.sh
+RUN sed -i 's/ACCUMULO_OTHER_OPTS="-Xmx128m -Xms64m"/ACCUMULO_OTHER_OPTS="-Xmx1024m -Xms1024m"/' ~/installs/accumulo-1.6.4/conf/accumulo-env.sh
+
 RUN sed -i 's/<value>DEFAULT<\/value>/<value>password<\/value>/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
 RUN sed -i 's/<value>secret<\/value>/<value>password<\/value>/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
 RUN sed -i 's/<\/configuration>/\
@@ -83,6 +90,12 @@ RUN sed -i 's/<\/configuration>/\
 <\/property>\n\
 <\/configuration>\n\
 /' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
+
+RUN sed -i 's/80M/1G/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
+RUN sed -i 's/7M/128M/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
+RUN sed -i 's/20M/256M/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
+RUN sed -i 's/50M/200M/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
+RUN sed -i 's/100M/1G/' ~/installs/accumulo-1.6.4/conf/accumulo-site.xml
 
 ADD sshd_start.sh /etc/my_init.d/01_sshd_start.sh
 ADD hadoop_format_hdfs.sh /etc/my_init.d/02_hadoop_format_hdfs.sh
